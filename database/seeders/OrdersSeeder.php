@@ -85,7 +85,7 @@ class OrdersSeeder extends Seeder
         $this->copyReceiptPdfsToStorage();
 
         $this->command->info("Atualizar os urls dos recibos das orders");
-        DB::update("update orders set receipt_url = CONCAT('receipt_', id, '.pdf')");
+        DB::update("update orders set receipt_url = 'receipt_' || id || '.pdf'");
         $this->command->info("---- END ----");
 
 
