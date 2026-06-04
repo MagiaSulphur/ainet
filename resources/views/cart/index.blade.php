@@ -19,9 +19,9 @@
             <flux:callout color="green">{{ session('status') }}</flux:callout>
         @endif
 
-        <div class="overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+        <div class="overflow-hidden rounded-xl border border-neutral-200">
             @forelse ($items as $item)
-                <div class="grid gap-4 border-b border-neutral-200 p-4 last:border-b-0 dark:border-neutral-700 lg:grid-cols-[96px_1fr_auto]">
+                <div class="grid gap-4 border-b border-neutral-200 p-4 last:border-b-0 lg:grid-cols-[96px_1fr_auto]">
                     <img
                         src="{{ asset('storage/tshirt_images/'.$item['image']->image_url) }}"
                         alt="{{ $item['image']->name }}"

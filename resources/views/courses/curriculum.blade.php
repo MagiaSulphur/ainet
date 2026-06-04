@@ -5,9 +5,9 @@
             <flux:text>{{ $course->abbreviation }}</flux:text>
         </div>
 
-        <div class="overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+        <div class="overflow-hidden rounded-xl border border-neutral-200">
             <table class="w-full text-left text-sm">
-                <thead class="border-b border-neutral-200 bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-900">
+                <thead class="border-b border-neutral-200 bg-neutral-50">
                     <tr>
                         <th class="px-4 py-3">{{ __('Year') }}</th>
                         <th class="px-4 py-3">{{ __('Semester') }}</th>
@@ -16,7 +16,7 @@
                         <th class="px-4 py-3">{{ __('ECTS') }}</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-neutral-200 dark:divide-neutral-700">
+                <tbody class="divide-y divide-neutral-200">
                     @forelse ($course->disciplines as $discipline)
                         <tr>
                             <td class="px-4 py-3">{{ $discipline->year }}</td>

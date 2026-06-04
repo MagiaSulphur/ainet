@@ -28,7 +28,7 @@
 
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             @forelse ($tshirtImages as $tshirtImage)
-                <div class="overflow-hidden rounded-xl border border-neutral-200 bg-white transition hover:border-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:border-neutral-600">
+                <div class="overflow-hidden rounded-xl border border-neutral-200 bg-white transition hover:border-neutral-300">
                     <img
                         src="{{ asset('storage/tshirt_images/'.$tshirtImage->image_url) }}"
                         alt="{{ $tshirtImage->name }}"
@@ -49,7 +49,7 @@
                     </div>
                 </div>
             @empty
-                <div class="rounded-xl border border-neutral-200 p-6 text-neutral-500 dark:border-neutral-700">
+                <div class="rounded-xl border border-neutral-200 p-6 text-neutral-500">
                     {{ __('No t-shirts found.') }}
                 </div>
             @endforelse

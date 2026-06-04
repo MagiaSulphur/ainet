@@ -1,6 +1,6 @@
 <x-layouts::app :title="$tshirtImage->name">
     <div class="grid gap-6 lg:grid-cols-[minmax(0,420px)_1fr]">
-        <div class="overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900">
+        <div class="overflow-hidden rounded-xl border border-neutral-200 bg-white">
             <img
                 src="{{ asset('storage/tshirt_images/'.$tshirtImage->image_url) }}"
                 alt="{{ $tshirtImage->name }}"
@@ -17,7 +17,7 @@
                 <flux:text>{{ $tshirtImage->description }}</flux:text>
             </div>
 
-            <form method="POST" action="{{ route('cart.store', $tshirtImage) }}" class="grid gap-4 rounded-xl border border-neutral-200 p-4 dark:border-neutral-700">
+            <form method="POST" action="{{ route('cart.store', $tshirtImage) }}" class="grid gap-4 rounded-xl border border-neutral-200 p-4">
                 @csrf
 
                 <flux:select name="color_code" :label="__('Color')" required>

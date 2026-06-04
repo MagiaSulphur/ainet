@@ -9,9 +9,9 @@
             <flux:button variant="primary" :href="route('courses.create')">{{ __('New') }}</flux:button>
         </div>
 
-        <div class="overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+        <div class="overflow-hidden rounded-xl border border-neutral-200">
             <table class="w-full text-left text-sm">
-                <thead class="border-b border-neutral-200 bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-900">
+                <thead class="border-b border-neutral-200 bg-neutral-50">
                     <tr>
                         <th class="px-4 py-3">{{ __('Code') }}</th>
                         <th class="px-4 py-3">{{ __('Name') }}</th>
@@ -19,7 +19,7 @@
                         <th class="px-4 py-3 text-right">{{ __('Actions') }}</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-neutral-200 dark:divide-neutral-700">
+                <tbody class="divide-y divide-neutral-200">
                     @forelse ($courses as $course)
                         <tr>
                             <td class="px-4 py-3 font-medium">{{ $course->abbreviation }}</td>

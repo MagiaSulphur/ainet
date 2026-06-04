@@ -26,7 +26,7 @@
             </div>
         </form>
 
-        <aside class="h-fit rounded-xl border border-neutral-200 p-4 dark:border-neutral-700">
+        <aside class="h-fit rounded-xl border border-neutral-200 p-4">
             <flux:heading>{{ __('Summary') }}</flux:heading>
             <div class="mt-4 flex flex-col gap-3">
                 @foreach ($items as $item)
@@ -36,7 +36,7 @@
                     </div>
                 @endforeach
             </div>
-            <div class="mt-4 border-t border-neutral-200 pt-4 dark:border-neutral-700">
+            <div class="mt-4 border-t border-neutral-200 pt-4">
                 <flux:heading>{{ number_format($total, 2) }} EUR</flux:heading>
             </div>
         </aside>

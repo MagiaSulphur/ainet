@@ -24,9 +24,9 @@
             <flux:callout color="green">{{ session('status') }}</flux:callout>
         @endif
 
-        <div class="overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+        <div class="overflow-hidden rounded-xl border border-neutral-200">
             <table class="w-full text-left text-sm">
-                <thead class="border-b border-neutral-200 bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-900">
+                <thead class="border-b border-neutral-200 bg-neutral-50">
                     <tr>
                         <th class="px-4 py-3">{{ __('Order') }}</th>
                         <th class="px-4 py-3">{{ __('Customer') }}</th>
@@ -35,7 +35,7 @@
                         <th class="px-4 py-3 text-right">{{ __('Total') }}</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-neutral-200 dark:divide-neutral-700">
+                <tbody class="divide-y divide-neutral-200">
                     @forelse ($orders as $order)
                         <tr>
                             <td class="px-4 py-3">

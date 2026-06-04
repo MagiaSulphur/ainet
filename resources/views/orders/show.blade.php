@@ -26,7 +26,7 @@
         @endif
 
         <div class="grid gap-4 md:grid-cols-2">
-            <div class="rounded-xl border border-neutral-200 p-4 dark:border-neutral-700">
+            <div class="rounded-xl border border-neutral-200 p-4">
                 <flux:heading>{{ __('Delivery') }}</flux:heading>
                 <dl class="mt-3 space-y-2 text-sm">
                     <div><dt class="font-medium">{{ __('NIF') }}</dt><dd>{{ $order->nif }}</dd></div>
@@ -39,7 +39,7 @@
             </div>
 
             @if (auth()->user()->isAdmin())
-                <form method="POST" action="{{ route('orders.cancel', $order) }}" class="rounded-xl border border-neutral-200 p-4 dark:border-neutral-700">
+                <form method="POST" action="{{ route('orders.cancel', $order) }}" class="rounded-xl border border-neutral-200 p-4">
                     @csrf
                     @method('PATCH')
                     <flux:heading>{{ __('Cancellation') }}</flux:heading>
@@ -47,16 +47,16 @@
                     <flux:button type="submit" variant="danger" class="mt-3">{{ __('Cancel order') }}</flux:button>
                 </form>
             @elseif ($order->reason_for_cancellation)
-                <div class="rounded-xl border border-neutral-200 p-4 dark:border-neutral-700">
+                <div class="rounded-xl border border-neutral-200 p-4">
                     <flux:heading>{{ __('Cancellation reason') }}</flux:heading>
                     <flux:text class="mt-3">{{ $order->reason_for_cancellation }}</flux:text>
                 </div>
             @endif
         </div>
 
-        <div class="overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+        <div class="overflow-hidden rounded-xl border border-neutral-200">
             <table class="w-full text-left text-sm">
-                <thead class="border-b border-neutral-200 bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-900">
+                <thead class="border-b border-neutral-200 bg-neutral-50">
                     <tr>
                         <th class="px-4 py-3">{{ __('Image') }}</th>
                         <th class="px-4 py-3">{{ __('Color') }}</th>
@@ -65,7 +65,7 @@
                         <th class="px-4 py-3 text-right">{{ __('Subtotal') }}</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-neutral-200 dark:divide-neutral-700">
+                <tbody class="divide-y divide-neutral-200">
                     @foreach ($order->items as $item)
                         <tr>
                             <td class="px-4 py-3">
