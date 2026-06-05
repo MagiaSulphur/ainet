@@ -16,6 +16,16 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        <!-- Gender -->
+        <div class="mt-4">
+            <x-input-label for="gender" :value="__('Gender')" />
+            <x-select id="gender" class="block mt-1 w-full" name="gender" required>
+                <option value="M" @selected(old('gender') === 'M')>{{ __('Male') }}</option>
+                <option value="F" @selected(old('gender') === 'F')>{{ __('Female') }}</option>
+            </x-select>
+            <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+        </div>
+
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
