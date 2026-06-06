@@ -6,6 +6,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\TshirtImageFileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 Route::get('/', [CatalogController::class, 'index'])->name('home');
 Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog.index');
@@ -28,12 +29,45 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('orders/{order}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
 });
 
+// Route::middleware(['auth', 'role:A'])->group(function () {
+
+//     Route::get('/admin-test', function () {
+//         return 'Solo administradores';
+//     });
+
+// });
+
 Route::middleware(['auth', 'role:A'])->group(function () {
 
-    Route::get('/admin-test', function () {
-        return 'Solo administradores';
-    });
+    Route::get('/admin/users', [UserController::class, 'index'])
+        ->name('users.index');
 
+            Route::get('/admin/users/create',
+    [UserController::class, 'create'])
+    ->name('users.create');
+
+Route::post('/admin/users',
+    [UserController::class, 'store'])
+    ->name('users.store');
+
+    Route::get(
+    '/admin/users/{user}/edit',
+    [UserController::class, 'edit']
+)->name('users.edit');
+
+Route::patch(
+    '/admin/users/{user}',
+    [UserController::class, 'update']
+)->name('users.update');
+
+Route::delete(
+    '/admin/users/{user}',
+    [UserController::class, 'destroy']
+)->name('users.destroy');
+
+Route::patch('/admin/users/{user}/toggle-block',
+    [UserController::class, 'toggleBlocked'])
+    ->name('users.toggle-block');
 });
 
 require __DIR__.'/settings.php';

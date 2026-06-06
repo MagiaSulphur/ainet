@@ -29,6 +29,28 @@
                         </flux:sidebar.item>
                     </flux:sidebar.group>
                 </flux:sidebar.nav>
+
+                @if(auth()->user()->isAdmin())
+
+    <flux:sidebar.nav>
+
+        <flux:sidebar.group heading="Administration">
+
+            <flux:sidebar.item
+                icon="users"
+                :href="route('users.index')"
+                :current="request()->routeIs('users.*')"
+                wire:navigate>
+
+                Users
+
+            </flux:sidebar.item>
+
+        </flux:sidebar.group>
+
+    </flux:sidebar.nav>
+
+@endif
             @endauth
 
             <flux:spacer />
