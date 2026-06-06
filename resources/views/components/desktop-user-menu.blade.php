@@ -2,16 +2,47 @@
     <flux:sidebar.profile
         :name="auth()->user()->name"
         :initials="auth()->user()->initials()"
+        :avatar="auth()->user()->photo_url
+        ? asset('storage/photos/' . auth()->user()->photo_url)
+        : null"
         icon:trailing="chevrons-up-down"
         data-test="sidebar-menu-button"
     />
 
     <flux:menu>
         <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
-            <flux:avatar
+            <!-- <flux:avatar
                 :name="auth()->user()->name"
                 :initials="auth()->user()->initials()"
-            />
+            /> -->
+            @if(auth()->user()->photo_url)
+
+    <img
+        src="{{ asset('storage/photos/' . auth()->user()->photo_url) }}"
+        alt="{{ auth()->user()->name }}"
+        class="h-10 w-10 rounded-full object-cover"
+    >
+
+@else
+
+@if(auth()->user()->photo_url)
+
+    <img
+        src="{{ asset('storage/photos/' . auth()->user()->photo_url) }}"
+        alt="{{ auth()->user()->name }}"
+        class="h-10 w-10 rounded-full object-cover"
+    >
+
+@else
+
+    <flux:avatar
+        :name="auth()->user()->name"
+        :initials="auth()->user()->initials()"
+    />
+
+@endif
+
+@endif
             <div class="grid flex-1 text-start text-sm leading-tight">
                 <flux:heading class="truncate">{{ auth()->user()->name }}</flux:heading>
                 <flux:text class="truncate">{{ auth()->user()->email }}</flux:text>

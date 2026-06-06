@@ -7,10 +7,14 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 new #[Title('Profile settings')] class extends Component {
     use ProfileValidationRules;
+    use WithFileUploads;
 
+    public $photo = '';
     public string $name = '';
     public string $email = '';
     public string $gender = '';
@@ -48,6 +52,11 @@ public function mount(): void
     'gender' => ['required', 'in:M,F'],
     'nif' => ['nullable', 'string', 'max:9'],
     'address' => ['nullable', 'string'],
+    'photo' => [
+        'nullable',
+        'image',
+        'max:2048',
+    ],
 ]);
 
         // $user->fill($validated);
@@ -61,6 +70,18 @@ public function mount(): void
         $user->gender = $validated['gender'];
 
         $user->save();
+
+if ($this->photo) {
+
+    $filename = $this->photo->store(
+        'photos',
+        'public'
+    );
+
+    $user->update([
+        'photo_url' => basename($filename),
+    ]);
+}
 
         if ($user->customer) {
             $user->customer->update([
@@ -129,7 +150,23 @@ public function mount(): void
                     </div>
                 @endif
             </div>
-            
+
+
+            @if(auth()->user()->photo_url)
+
+    <img
+        src="{{ asset('storage/photos/' . auth()->user()->photo_url) }}"
+        class="h-20 w-20 rounded-full object-cover"
+    >
+
+@endif
+
+            <flux:input
+    wire:model="photo"
+    type="file"
+    label="Photo"
+/>
+
 <div>
     <label>Gender</label>
     <select wire:model="gender">
