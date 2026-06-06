@@ -13,15 +13,27 @@ new #[Title('Profile settings')] class extends Component {
 
     public string $name = '';
     public string $email = '';
+    public string $gender = '';
+
+    public ?string $nif = null;
+    public ?string $address = null;
 
     /**
      * Mount the component.
      */
-    public function mount(): void
-    {
-        $this->name = Auth::user()->name;
-        $this->email = Auth::user()->email;
+public function mount(): void
+{
+    $user = Auth::user();
+
+    $this->name = $user->name;
+    $this->email = $user->email;
+    $this->gender = $user->gender;
+
+    if ($user->customer) {
+        $this->nif = $user->customer->nif;
+        $this->address = $user->customer->address;
     }
+}
 
     /**
      * Update the profile information for the currently authenticated user.
@@ -30,15 +42,32 @@ new #[Title('Profile settings')] class extends Component {
     {
         $user = Auth::user();
 
-        $validated = $this->validate($this->profileRules($user->id));
+        $validated = $this->validate([
+    'name' => ['required', 'string', 'max:255'],
+    'email' => ['required', 'email'],
+    'gender' => ['required', 'in:M,F'],
+    'nif' => ['nullable', 'string', 'max:9'],
+    'address' => ['nullable', 'string'],
+]);
 
-        $user->fill($validated);
+        // $user->fill($validated);
 
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
         }
 
+        $user->name = $validated['name'];
+        $user->email = $validated['email'];
+        $user->gender = $validated['gender'];
+
         $user->save();
+
+        if ($user->customer) {
+            $user->customer->update([
+        'nif' => $validated['nif'],
+        'address' => $validated['address'],
+    ]);
+}
 
         Flux::toast(variant: 'success', text: __('Profile updated.'));
     }
@@ -100,6 +129,26 @@ new #[Title('Profile settings')] class extends Component {
                     </div>
                 @endif
             </div>
+            
+<div>
+    <label>Gender</label>
+    <select wire:model="gender">
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+    </select>
+</div>
+
+<flux:input
+    wire:model="nif"
+    label="NIF"
+    type="text"
+/>
+
+<flux:input
+    wire:model="address"
+    :label="__('Address')"
+    type="text"
+/>
 
             <div class="flex items-center gap-4">
                 <flux:button variant="primary" type="submit" data-test="update-profile-button">

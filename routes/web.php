@@ -28,4 +28,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('orders/{order}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
 });
 
+Route::middleware(['auth', 'role:A'])->group(function () {
+
+    Route::get('/admin-test', function () {
+        return 'Solo administradores';
+    });
+
+});
+
 require __DIR__.'/settings.php';
+// require __DIR__.'/auth.php';

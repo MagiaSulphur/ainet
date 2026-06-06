@@ -24,7 +24,7 @@
             <flux:menu.item icon="shopping-bag" :href="route('catalog.index')" :current="false" wire:navigate>
                 {{ __('Catalog') }}
             </flux:menu.item>
-            <flux:menu.item icon="clipboard-list" :href="route('orders.index')" :current="false" wire:navigate>
+            <flux:menu.item icon="shopping-bag" :href="route('orders.index')" :current="false" wire:navigate>
                 {{ auth()->user()->isCustomer() ? __('My orders') : __('Orders') }}
             </flux:menu.item>
         </flux:menu.radio.group>

@@ -41,7 +41,7 @@
                             <td class="px-4 py-3">
                                 <a href="{{ route('orders.show', $order) }}" class="font-medium underline" wire:navigate>#{{ $order->id }}</a>
                             </td>
-                            <td class="px-4 py-3">{{ $order->customer->user->name }}</td>
+                            <td class="px-4 py-3">{{ $order->customer->user->name ?? 'Deleted Customer' }}</td>
                             <td class="px-4 py-3">{{ $order->date?->format('Y-m-d') }}</td>
                             <td class="px-4 py-3">{{ ucfirst($order->status) }}</td>
                             <td class="px-4 py-3 text-right">{{ number_format((float) $order->total_price, 2) }} EUR</td>

@@ -24,7 +24,7 @@
             @auth
                 <flux:sidebar.nav>
                     <flux:sidebar.group heading="Orders" class="grid">
-                        <flux:sidebar.item icon="clipboard-list" :href="route('orders.index')" :current="request()->routeIs('orders.*', 'dashboard')" wire:navigate>
+                        <flux:sidebar.item icon="shopping-bag" :href="route('orders.index')" :current="request()->routeIs('orders.*', 'dashboard')" wire:navigate>
                             {{ auth()->user()->isCustomer() ? __('My orders') : __('Orders') }}
                         </flux:sidebar.item>
                     </flux:sidebar.group>
