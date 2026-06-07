@@ -59,15 +59,13 @@ public function mount(): void
     ],
 ]);
 
-        // $user->fill($validated);
+        $user->name = $validated['name'];
+        $user->email = $validated['email'];
+        $user->gender = $validated['gender'];
 
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
         }
-
-        $user->name = $validated['name'];
-        $user->email = $validated['email'];
-        $user->gender = $validated['gender'];
 
         $user->save();
 
