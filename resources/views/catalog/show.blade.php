@@ -1,46 +1,75 @@
 <x-layouts::app :title="$tshirtImage->name">
-    <div class="grid gap-6 lg:grid-cols-[minmax(0,420px)_1fr]">
-        <div class="overflow-hidden rounded-xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900">
-            <img
-                src="{{ asset('storage/tshirt_images/'.$tshirtImage->image_url) }}"
-                alt="{{ $tshirtImage->name }}"
-                class="aspect-square w-full object-contain p-8"
-            >
-        </div>
+    <div class="shop-shell flex flex-col gap-6">
+        <a href="{{ route('catalog.index') }}" class="shop-link-button shop-link-button-secondary w-fit px-4" wire:navigate>
+            {{ __('Back to catalog') }}
+        </a>
 
-        <div class="flex flex-col gap-6">
-            <div class="flex flex-col gap-3">
-                <flux:heading size="xl">{{ $tshirtImage->name }}</flux:heading>
-                @if ($tshirtImage->category)
-                    <flux:badge>{{ $tshirtImage->category->name }}</flux:badge>
-                @endif
-                <flux:text>{{ $tshirtImage->description }}</flux:text>
+        <section class="grid gap-6 lg:grid-cols-[minmax(0,460px)_1fr]">
+            <div class="shop-card overflow-hidden">
+                <div class="shop-image-panel">
+                    <img
+                        src="{{ asset('storage/tshirt_images/'.$tshirtImage->image_url) }}"
+                        alt="{{ $tshirtImage->name }}"
+                        class="aspect-square w-full object-contain p-8"
+                    >
+                </div>
             </div>
 
-            <form method="POST" action="{{ route('cart.store', $tshirtImage) }}" class="grid gap-4 rounded-xl border border-neutral-200 p-4 dark:border-neutral-700">
-                @csrf
+            <div class="flex flex-col gap-6">
+                <div class="shop-hero p-6">
+                    <div class="shop-kicker">{{ __('Catalog design') }}</div>
+                    <h1 class="mt-2 text-4xl font-black leading-tight text-[#1f1f24]">{{ $tshirtImage->name }}</h1>
 
-                <flux:select name="color_code" :label="__('Color')" required>
-                    @foreach ($colors as $color)
-                        <option value="{{ $color->code }}" @selected(old('color_code') === $color->code)>
-                            {{ $color->name }}
-                        </option>
-                    @endforeach
-                </flux:select>
+                    @if ($tshirtImage->category)
+                        <div class="mt-4">
+                            <span class="shop-chip px-3 py-1">{{ $tshirtImage->category->name }}</span>
+                        </div>
+                    @endif
 
-                <flux:select name="size" :label="__('Size')" required>
-                    @foreach ($sizes as $size)
-                        <option value="{{ $size }}" @selected(old('size', 'M') === $size)>{{ $size }}</option>
-                    @endforeach
-                </flux:select>
-
-                <flux:input name="qty" :label="__('Quantity')" type="number" min="1" max="99" value="{{ old('qty', 1) }}" required />
-
-                <div class="flex gap-3">
-                    <flux:button type="submit" variant="primary">{{ __('Add to cart') }}</flux:button>
-                    <flux:button :href="route('catalog.index')" variant="filled" wire:navigate>{{ __('Back') }}</flux:button>
+                    <p class="mt-4 text-base font-medium text-neutral-700">{{ $tshirtImage->description }}</p>
                 </div>
-            </form>
-        </div>
+
+                @if ($price)
+                    <div class="shop-card grid gap-4 p-5 sm:grid-cols-2">
+                        <div>
+                            <div class="text-sm font-bold text-neutral-500">{{ __('Unit price') }}</div>
+                            <div class="text-3xl font-black text-[#ff2dd1]">{{ number_format((float) $price->unit_price_catalog, 2) }} EUR</div>
+                        </div>
+                        <div class="rounded-lg border-2 border-[#1f1f24] bg-[#4dffbe] p-4">
+                            <div class="text-sm font-bold text-neutral-700">{{ __('From :qty units', ['qty' => $price->qty_discount]) }}</div>
+                            <div class="text-2xl font-black text-[#1f1f24]">{{ number_format((float) $price->unit_price_catalog_discount, 2) }} EUR</div>
+                        </div>
+                    </div>
+                @endif
+
+                <div class="shop-card grid gap-5 p-5">
+                    <div>
+                        <div class="mb-3 text-sm font-black text-[#1f1f24]">{{ __('Available colors') }}</div>
+                        <div class="flex flex-wrap gap-2">
+                            @foreach ($colors as $color)
+                                @php
+                                    $cssColor = str_starts_with($color->code, '#') || ! preg_match('/^[A-Fa-f0-9]{3,8}$/', $color->code)
+                                        ? $color->code
+                                        : '#'.$color->code;
+                                @endphp
+                                <span class="inline-flex items-center gap-2 rounded-full border-2 border-[#1f1f24] bg-white px-3 py-2 text-sm font-bold">
+                                    <span class="size-4 rounded-full border border-neutral-300" style="background-color: {{ $cssColor }}"></span>
+                                    {{ $color->name }}
+                                </span>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="mb-3 text-sm font-black text-[#1f1f24]">{{ __('Available sizes') }}</div>
+                        <div class="flex flex-wrap gap-2">
+                            @foreach ($sizes as $size)
+                                <span class="inline-flex min-w-11 justify-center rounded-lg border-2 border-[#1f1f24] bg-[#63c8ff] px-3 py-2 text-sm font-black text-[#1f1f24]">{{ $size }}</span>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </x-layouts::app>

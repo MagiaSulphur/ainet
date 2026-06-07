@@ -23,8 +23,8 @@
     --color-zinc-900: #171717;
     --color-zinc-950: #0a0a0a;
 
-    --color-accent: var(--color-neutral-800);
-    --color-accent-content: var(--color-neutral-800);
+    --color-accent: #FF2DD1;
+    --color-accent-content: #FF2DD1;
     --color-accent-foreground: var(--color-white);
 
     /* Code added to define background images for the logo */
@@ -63,6 +63,250 @@ input:focus[data-flux-control],
 textarea:focus[data-flux-control],
 select:focus[data-flux-control] {
     @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+}
+
+@layer components {
+    .shop-body {
+        background:
+            linear-gradient(180deg, rgba(253, 255, 184, 0.8), rgba(255, 255, 255, 0.95) 280px),
+            #ffffff;
+        color: #1f1f24;
+    }
+
+    .shop-main {
+        padding: 1.25rem;
+    }
+
+    .shop-shell {
+        margin-inline: auto;
+        max-width: 1180px;
+    }
+
+    .shop-navbar {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        border-bottom: 2px solid #1f1f24;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+    }
+
+    .shop-navbar-inner {
+        display: flex;
+        min-height: 4.5rem;
+        align-items: center;
+        gap: 1rem;
+        margin-inline: auto;
+        max-width: 1180px;
+        padding: 0.75rem 1.25rem;
+    }
+
+    .shop-navbar-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: #1f1f24;
+        font-size: 1.15rem;
+        font-weight: 900;
+        text-decoration: none;
+    }
+
+    .shop-navbar-mark {
+        display: inline-flex;
+        width: 2.75rem;
+        height: 2.75rem;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #1f1f24;
+        border-radius: 8px;
+        background: #ff2dd1;
+        color: #ffffff;
+        box-shadow: 4px 4px 0 #63c8ff;
+        font-size: 0.9rem;
+        font-weight: 900;
+    }
+
+    .shop-navbar-links {
+        display: none;
+        align-items: center;
+        gap: 0.5rem;
+        margin-left: auto;
+    }
+
+    .shop-navbar-link {
+        border: 2px solid transparent;
+        border-radius: 8px;
+        color: #1f1f24;
+        font-size: 0.95rem;
+        font-weight: 800;
+        padding: 0.55rem 0.9rem;
+        text-decoration: none;
+    }
+
+    .shop-navbar-link:hover,
+    .shop-navbar-link-active {
+        border-color: #1f1f24;
+        background: #fdffb8;
+        box-shadow: 3px 3px 0 #4dffbe;
+    }
+
+    .shop-navbar-actions {
+        display: none;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .shop-navbar-mobile {
+        margin-left: auto;
+        position: relative;
+    }
+
+    .shop-navbar-mobile summary {
+        cursor: pointer;
+        list-style: none;
+        border: 2px solid #1f1f24;
+        border-radius: 8px;
+        background: #4dffbe;
+        color: #1f1f24;
+        font-weight: 900;
+        padding: 0.55rem 0.9rem;
+        box-shadow: 3px 3px 0 #1f1f24;
+    }
+
+    .shop-navbar-mobile summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .shop-navbar-mobile-panel {
+        position: absolute;
+        right: 0;
+        top: calc(100% + 0.75rem);
+        display: grid;
+        min-width: 12rem;
+        gap: 0.5rem;
+        border: 2px solid #1f1f24;
+        border-radius: 8px;
+        background: #ffffff;
+        padding: 0.75rem;
+        box-shadow: 6px 6px 0 #63c8ff;
+    }
+
+    .shop-navbar-mobile-link {
+        border-radius: 8px;
+        color: #1f1f24;
+        font-weight: 800;
+        padding: 0.65rem 0.75rem;
+        text-decoration: none;
+    }
+
+    .shop-navbar-mobile-link:hover,
+    .shop-navbar-mobile-link-active {
+        background: #fdffb8;
+    }
+
+    @media (min-width: 768px) {
+        .shop-navbar-links,
+        .shop-navbar-actions {
+            display: flex;
+        }
+
+        .shop-navbar-mobile {
+            display: none;
+        }
+    }
+
+    .shop-sidebar {
+        background: #ffffff;
+        border-color: rgba(255, 45, 209, 0.35);
+        box-shadow: 8px 0 24px rgba(99, 200, 255, 0.12);
+    }
+
+    .shop-hero {
+        border: 2px solid #1f1f24;
+        border-radius: 8px;
+        background: #fdffb8;
+        box-shadow: 10px 10px 0 #63c8ff;
+    }
+
+    .shop-kicker {
+        color: #c10d99;
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0;
+        text-transform: uppercase;
+    }
+
+    .shop-search {
+        border: 2px solid #1f1f24;
+        border-radius: 8px;
+        background: #ffffff;
+        box-shadow: 6px 6px 0 #4dffbe;
+    }
+
+    .shop-category {
+        border: 2px solid #1f1f24;
+        border-radius: 8px;
+        background: #ffffff;
+        transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .shop-category:hover {
+        transform: translateY(-2px);
+        box-shadow: 6px 6px 0 #ff2dd1;
+    }
+
+    .shop-card {
+        border: 2px solid #1f1f24;
+        border-radius: 8px;
+        background: #ffffff;
+        box-shadow: 6px 6px 0 rgba(31, 31, 36, 0.12);
+        transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .shop-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 8px 8px 0 #63c8ff;
+    }
+
+    .shop-image-panel {
+        background:
+            linear-gradient(90deg, rgba(99, 200, 255, 0.28) 0 50%, rgba(77, 255, 190, 0.28) 50% 100%),
+            #ffffff;
+    }
+
+    .shop-chip {
+        border: 1px solid #1f1f24;
+        border-radius: 999px;
+        background: #fdffb8;
+        color: #1f1f24;
+        font-size: 0.75rem;
+        font-weight: 700;
+    }
+
+    .shop-link-button {
+        display: inline-flex;
+        min-height: 2.5rem;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #1f1f24;
+        border-radius: 8px;
+        background: #ff2dd1;
+        color: #ffffff;
+        font-weight: 800;
+        text-decoration: none;
+        box-shadow: 4px 4px 0 #1f1f24;
+        transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .shop-link-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 6px 6px 0 #1f1f24;
+    }
+
+    .shop-link-button-secondary {
+        background: #4dffbe;
+        color: #1f1f24;
+    }
 }
 
 /* \[:where(&)\]:size-4 {
