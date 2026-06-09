@@ -29,7 +29,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td class="px-4 py-6 text-neutral-500" colspan="3">{{ __('No departments found.') }}</td>
+                            <td class="px-4 py-6 text-neutral-500 dark:text-neutral-400" colspan="3">{{ __('No departments found.') }}</td>
                         </tr>
                     @endforelse
                 </tbody>

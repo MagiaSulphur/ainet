@@ -33,7 +33,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td class="px-4 py-6 text-neutral-500" colspan="5">{{ __('No disciplines found.') }}</td>
+                            <td class="px-4 py-6 text-neutral-500 dark:text-neutral-400" colspan="5">{{ __('No disciplines found.') }}</td>
                         </tr>
                     @endforelse
                 </tbody>

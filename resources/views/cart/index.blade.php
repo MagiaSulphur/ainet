@@ -67,7 +67,7 @@
                     </div>
                 </div>
             @empty
-                <div class="p-6 text-neutral-500">{{ __('Your cart is empty.') }}</div>
+                <div class="p-6 text-neutral-500 dark:text-neutral-400">{{ __('Your cart is empty.') }}</div>
             @endforelse
         </div>
 

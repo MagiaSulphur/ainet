@@ -11,7 +11,7 @@
 
         <dl class="grid gap-4 md:grid-cols-2">
             <div>
-                <dt class="text-sm text-neutral-500">{{ __('Portuguese name') }}</dt>
+                <dt class="text-sm text-neutral-500 dark:text-neutral-400">{{ __('Portuguese name') }}</dt>
                 <dd>{{ $department->name_pt }}</dd>
             </div>
         </dl>

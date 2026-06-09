@@ -35,7 +35,7 @@
                                     <span class="size-8 rounded border border-neutral-300" style="background-color: {{ $cssColor }}"></span>
                                     <div>
                                         <div class="font-medium">{{ $color->name }}</div>
-                                        <div class="font-mono text-xs text-neutral-500">{{ $color->code }}</div>
+                                        <div class="font-mono text-xs text-neutral-500 dark:text-neutral-400">{{ $color->code }}</div>
                                     </div>
                                 </div>
                             </td>
@@ -60,7 +60,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="px-4 py-6 text-neutral-500">{{ __('No colors found.') }}</td>
+                            <td colspan="4" class="px-4 py-6 text-neutral-500 dark:text-neutral-400">{{ __('No colors found.') }}</td>
                         </tr>
                     @endforelse
                 </tbody>

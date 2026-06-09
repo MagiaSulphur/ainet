@@ -31,7 +31,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td class="px-4 py-6 text-neutral-500" colspan="4">{{ __('No courses found.') }}</td>
+                            <td class="px-4 py-6 text-neutral-500 dark:text-neutral-400" colspan="4">{{ __('No courses found.') }}</td>
                         </tr>
                     @endforelse
                 </tbody>

@@ -43,7 +43,7 @@
                                     <img src="{{ asset('storage/tshirt_images/'.$image->image_url) }}" alt="{{ $image->name }}" class="size-14 rounded bg-white object-contain p-1">
                                     <div>
                                         <div class="font-medium">{{ $image->name }}</div>
-                                        <div class="line-clamp-1 text-neutral-500">{{ $image->description }}</div>
+                                        <div class="line-clamp-1 text-neutral-500 dark:text-neutral-400">{{ $image->description }}</div>
                                     </div>
                                 </div>
                             </td>
@@ -62,7 +62,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="px-4 py-6 text-neutral-500">{{ __('No catalog images found.') }}</td>
+                            <td colspan="4" class="px-4 py-6 text-neutral-500 dark:text-neutral-400">{{ __('No catalog images found.') }}</td>
                         </tr>
                     @endforelse
                 </tbody>

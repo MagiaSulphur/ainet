@@ -3,17 +3,17 @@
         <section class="shop-hero grid gap-6 p-6 md:grid-cols-[1fr_auto] md:items-end">
             <div class="max-w-2xl">
                 <div class="shop-kicker">{{ __('FunShirt store') }}</div>
-                <h1 class="mt-2 text-4xl font-black text-[#1f1f24] sm:text-5xl">{{ __('Catalog') }}</h1>
-                <p class="mt-3 max-w-xl text-base font-medium text-neutral-700">
+                <h1 class="mt-2 text-4xl font-black text-[#1f1f24] dark:text-white sm:text-5xl">{{ __('Catalog') }}</h1>
+                <p class="mt-3 max-w-xl text-base font-medium text-neutral-600 dark:text-neutral-400 dark:text-neutral-400">
                     {{ __('Explore public t-shirt designs by category, style and name.') }}
                 </p>
             </div>
 
             @if ($price)
                 <div class="grid min-w-52 gap-2 rounded-lg border-2 border-[#1f1f24] bg-white p-4">
-                    <div class="text-sm font-bold text-neutral-500">{{ __('From') }}</div>
+                    <div class="text-sm font-bold text-neutral-500 dark:text-neutral-400">{{ __('From') }}</div>
                     <div class="text-3xl font-black text-[#ff2dd1]">{{ number_format((float) $price->unit_price_catalog, 2) }} EUR</div>
-                    <div class="rounded-md bg-[#4dffbe] px-3 py-2 text-sm font-bold text-[#1f1f24]">
+                    <div class="rounded-md bg-[#4dffbe] px-3 py-2 text-sm font-bold text-[#1f1f24] dark:text-white">
                         {{ __('Discount from :qty units', ['qty' => $price->qty_discount]) }}
                     </div>
                 </div>
@@ -46,7 +46,7 @@
             <div class="flex items-end justify-between gap-4">
                 <div>
                     <div class="shop-kicker">{{ __('Departments') }}</div>
-                    <h2 class="text-2xl font-black text-[#1f1f24]">{{ __('Shop by category') }}</h2>
+                    <h2 class="text-2xl font-black text-[#1f1f24] dark:text-white">{{ __('Shop by category') }}</h2>
                 </div>
             </div>
 
@@ -57,7 +57,7 @@
                     wire:navigate
                 >
                     <span class="font-black">{{ __('All designs') }}</span>
-                    <span class="mt-1 text-sm font-semibold text-neutral-500">{{ $categories->sum('tshirt_images_count') }} {{ __('items') }}</span>
+                    <span class="mt-1 text-sm font-semibold text-neutral-500 dark:text-neutral-400">{{ $categories->sum('tshirt_images_count') }} {{ __('items') }}</span>
                 </a>
 
                 @foreach ($categories as $category)
@@ -73,7 +73,7 @@
                         >
                         <span class="text-sm">
                             <span class="block font-black">{{ $category->name }}</span>
-                            <span class="font-semibold text-neutral-500">{{ $category->tshirt_images_count }} {{ __('items') }}</span>
+                            <span class="font-semibold text-neutral-500 dark:text-neutral-400">{{ $category->tshirt_images_count }} {{ __('items') }}</span>
                         </span>
                     </a>
                 @endforeach
@@ -100,14 +100,14 @@
                                     <span class="shop-chip w-fit px-3 py-1">{{ __('Without category') }}</span>
                                 @endif
 
-                                <h3 class="text-lg font-black leading-tight text-[#1f1f24]">{{ $tshirtImage->name }}</h3>
-                                <p class="line-clamp-2 text-sm font-medium text-neutral-600">{{ $tshirtImage->description }}</p>
+                                <h3 class="text-lg font-black leading-tight text-[#1f1f24] dark:text-white">{{ $tshirtImage->name }}</h3>
+                                <p class="line-clamp-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">{{ $tshirtImage->description }}</p>
                             </div>
 
                             <div class="flex items-center justify-between gap-3">
                                 @if ($price)
                                     <div>
-                                        <div class="text-xs font-bold text-neutral-500">{{ __('Price') }}</div>
+                                        <div class="text-xs font-bold text-neutral-500 dark:text-neutral-400">{{ __('Price') }}</div>
                                         <div class="font-black text-[#ff2dd1]">{{ number_format((float) $price->unit_price_catalog, 2) }} EUR</div>
                                     </div>
                                 @endif
@@ -120,7 +120,7 @@
                     </div>
                 </article>
             @empty
-                <div class="shop-card p-6 text-neutral-600">
+                <div class="shop-card p-6 text-neutral-600 dark:text-neutral-400">
                     {{ __('No t-shirts found.') }}
                 </div>
             @endforelse

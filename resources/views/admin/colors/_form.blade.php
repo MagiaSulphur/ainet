@@ -10,7 +10,7 @@
                 : '#'.$color->code;
         @endphp
         <div>
-            <div class="text-sm font-medium text-neutral-700 dark:text-neutral-200">{{ __('CSS color code') }}</div>
+            <div class="text-sm font-medium text-neutral-600 dark:text-neutral-400 dark:text-neutral-400 dark:text-neutral-200">{{ __('CSS color code') }}</div>
             <div class="mt-2 flex items-center gap-3 rounded-lg border border-neutral-200 p-3 dark:border-neutral-700">
                 <span class="size-8 rounded border border-neutral-300" style="background-color: {{ $cssColor }}"></span>
                 <span class="font-mono text-sm">{{ $color->code }}</span>

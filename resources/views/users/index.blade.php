@@ -135,7 +135,7 @@
 
     @else
 
-        <span class="text-neutral-500">
+        <span class="text-neutral-500 dark:text-neutral-400">
             Current User
         </span>
 
@@ -181,7 +181,7 @@
 
     @else
 
-        <span class="text-neutral-500">
+        <span class="text-neutral-500 dark:text-neutral-400">
             Current User
         </span>
 

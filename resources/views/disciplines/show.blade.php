@@ -11,19 +11,19 @@
 
         <dl class="grid gap-4 md:grid-cols-2">
             <div>
-                <dt class="text-sm text-neutral-500">{{ __('Year') }}</dt>
+                <dt class="text-sm text-neutral-500 dark:text-neutral-400">{{ __('Year') }}</dt>
                 <dd>{{ $discipline->year }}</dd>
             </div>
             <div>
-                <dt class="text-sm text-neutral-500">{{ __('Semester') }}</dt>
+                <dt class="text-sm text-neutral-500 dark:text-neutral-400">{{ __('Semester') }}</dt>
                 <dd>{{ $discipline->semester }}</dd>
             </div>
             <div>
-                <dt class="text-sm text-neutral-500">{{ __('ECTS') }}</dt>
+                <dt class="text-sm text-neutral-500 dark:text-neutral-400">{{ __('ECTS') }}</dt>
                 <dd>{{ $discipline->ECTS }}</dd>
             </div>
             <div>
-                <dt class="text-sm text-neutral-500">{{ __('Hours') }}</dt>
+                <dt class="text-sm text-neutral-500 dark:text-neutral-400">{{ __('Hours') }}</dt>
                 <dd>{{ $discipline->hours }}</dd>
             </div>
         </dl>
