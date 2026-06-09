@@ -82,24 +82,26 @@ select:focus[data-flux-control] {
         max-width: 1180px;
     }
 
-    .shop-navbar {
-        position: sticky;
-        top: 0;
-        z-index: 40;
-        border-bottom: 2px solid #1f1f24;
-        background: rgba(255, 255, 255, 0.92);
-        backdrop-filter: blur(12px);
-    }
+.shop-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    width: 100%;
+    border-bottom: 2px solid #1f1f24;
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur(12px);
+}
 
-    .shop-navbar-inner {
-        display: flex;
-        min-height: 4.5rem;
-        align-items: center;
-        gap: 1rem;
-        margin-inline: auto;
-        max-width: 1180px;
-        padding: 0.75rem 1.25rem;
-    }
+.shop-navbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 4.5rem;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
 
     .shop-navbar-brand {
         display: inline-flex;
@@ -126,12 +128,12 @@ select:focus[data-flux-control] {
         font-weight: 900;
     }
 
-    .shop-navbar-links {
-        display: none;
-        align-items: center;
-        gap: 0.5rem;
-        margin-left: auto;
-    }
+.shop-navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 2rem;
+}
 
     .shop-navbar-link {
         border: 2px solid transparent;
@@ -150,11 +152,12 @@ select:focus[data-flux-control] {
         box-shadow: 3px 3px 0 #4dffbe;
     }
 
-    .shop-navbar-actions {
-        display: none;
-        align-items: center;
-        gap: 0.5rem;
-    }
+.shop-navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin-left: auto;
+}
 
     .shop-navbar-user {
         display: inline-flex;
