@@ -37,7 +37,7 @@
                         </div>
                         <div class="rounded-lg border-2 border-[#1f1f24] bg-[#4dffbe] p-4">
                             <div class="text-sm font-bold text-neutral-600 dark:text-neutral-400 dark:text-neutral-400">{{ __('From :qty units', ['qty' => $price->qty_discount]) }}</div>
-                            <div class="text-2xl font-black text-[#1f1f24] dark:text-white">{{ number_format((float) $price->unit_price_catalog_discount, 2) }} EUR</div>
+                            <div class="text-2xl font-black text-[#1f1f24] dark:text-black">{{ number_format((float) $price->unit_price_catalog_discount, 2) }} EUR</div>
                         </div>
                     </div>
                 @endif
