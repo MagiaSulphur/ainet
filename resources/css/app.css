@@ -362,6 +362,46 @@ select:focus[data-flux-control] {
         background: #4dffbe;
         color: #1f1f24;
     }
+
+    .dark .shop-body {
+    background: #111827;
+    color: #f9fafb;
+}
+
+.dark .shop-navbar {
+    background: #1f2937;
+}
+
+.dark .shop-card,
+.dark .shop-search,
+.dark .shop-category,
+.dark .shop-hero {
+    background: #1f2937;
+    border-color: #374151;
+    color: #f9fafb;
+}
+
+.dark .shop-navbar-link,
+.dark .shop-navbar-brand,
+.dark .shop-navbar-user {
+    color: white !important;
+}
+
+.dark .shop-navbar-link:hover,
+.dark .shop-navbar-link-active {
+    background: #ff2dd1 !important;
+    color: #ffffff !important;
+    border: 2px solid #1f1f24 !important;
+    box-shadow: 4px 4px 0 #63c8ff !important;
+}
+
+.shop-navbar-link {
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
 }
 
 /* \[:where(&)\]:size-4 {
