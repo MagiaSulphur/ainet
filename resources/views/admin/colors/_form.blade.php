@@ -2,7 +2,7 @@
 
 <div class="grid gap-4">
     @if (! $color->exists)
-        <flux:input name="code" :label="__('CSS color code')" value="{{ old('code', $color->code) }}" placeholder="fafafa" required />
+        <flux:input name="code" :label="__('CSS color code')" value="{{ old('code', $color->code) }}" placeholder="fafafa" minlength="6" maxlength="6" required />
     @else
         @php
             $cssColor = str_starts_with($color->code, '#') || ! preg_match('/^[A-Fa-f0-9]{3,8}$/', $color->code)
@@ -19,7 +19,12 @@
     @endif
 
     <flux:input name="name" :label="__('Name')" value="{{ old('name', $color->name) }}" required />
-    <flux:input name="base_image" :label="__('Base t-shirt image')" type="file" accept="image/jpeg,image/jpg" />
+    <flux:input name="base_image" :label="__('Base t-shirt image')" type="file" accept="image/jpeg,image/jpg" @required(! $color->exists) />
+    <flux:text class="text-sm">
+        {{ $color->exists
+            ? __('Upload a JPEG file only when replacing the base t-shirt image.')
+            : __('A JPEG base t-shirt image is required for every new color.') }}
+    </flux:text>
 
     @if ($color->exists)
         <img

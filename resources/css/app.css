@@ -256,6 +256,26 @@ select:focus[data-flux-control] {
         text-align: left;
     }
 
+    .shop-admin-nav-link {
+        display: inline-flex;
+        min-height: 2.5rem;
+        align-items: center;
+        border: 2px solid #1f1f24;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #1f1f24;
+        font-size: 0.9rem;
+        font-weight: 800;
+        padding: 0.5rem 0.85rem;
+        text-decoration: none;
+    }
+
+    .shop-admin-nav-link:hover,
+    .shop-admin-nav-link-active {
+        background: #fdffb8;
+        box-shadow: 3px 3px 0 #4dffbe;
+    }
+
     @media (min-width: 768px) {
         .shop-navbar-links,
         .shop-navbar-actions {

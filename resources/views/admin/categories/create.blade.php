@@ -1,5 +1,7 @@
 <x-layouts::app :title="__('New category')">
     <form method="POST" action="{{ route('admin.categories.store') }}" enctype="multipart/form-data" class="flex max-w-2xl flex-col gap-6">
+        <x-admin.catalog-nav />
+
         <div>
             <flux:heading size="xl">{{ __('New category') }}</flux:heading>
             <flux:text>{{ __('Create a category for catalog designs.') }}</flux:text>

@@ -14,7 +14,8 @@
         @endforeach
     </flux:select>
 
-    <flux:input name="image" :label="__('Image file')" type="file" accept="image/*" @required(! $image->exists) />
+    <flux:input name="image" :label="__('Image file')" type="file" accept="image/jpeg,image/png,image/webp" required />
+    <flux:text class="text-sm">{{ __('Uploading the image file is required when creating or updating a catalog design.') }}</flux:text>
 
     @if ($image->exists)
         <img

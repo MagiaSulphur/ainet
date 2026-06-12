@@ -1,5 +1,7 @@
 <x-layouts::app :title="__('New color')">
     <div class="mx-auto flex max-w-2xl flex-col gap-6">
+        <x-admin.catalog-nav />
+
         <div class="flex items-center justify-between gap-4">
             <flux:heading size="xl">{{ __('New color') }}</flux:heading>
             <flux:button :href="route('admin.colors.index')" variant="filled" wire:navigate>{{ __('Back') }}</flux:button>

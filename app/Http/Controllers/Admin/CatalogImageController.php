@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\TshirtImage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
@@ -54,7 +55,7 @@ class CatalogImageController extends Controller
     {
         $this->authorizeAdmin();
 
-        $validated = $this->validated($request, true);
+        $validated = $this->validated($request);
         $file = $validated['image'];
         unset($validated['image']);
 
@@ -86,19 +87,20 @@ class CatalogImageController extends Controller
         $this->authorizeAdmin();
         abort_if($catalogImage->customer_id !== null, 404);
 
-        $validated = $this->validated($request, false);
-        $file = $validated['image'] ?? null;
+        $validated = $this->validated($request);
+        $file = $validated['image'];
         unset($validated['image']);
+
+        $oldImage = $catalogImage->image_url;
+        $newImage = $this->storeFile($file, $catalogImage);
 
         $catalogImage->update([
             ...$validated,
             'category_id' => $validated['category_id'] ?: null,
+            'image_url' => $newImage,
         ]);
 
-        if ($file) {
-            Storage::disk('public')->delete('tshirt_images/'.$catalogImage->image_url);
-            $this->storeImage($file, $catalogImage);
-        }
+        Storage::disk('public')->delete('tshirt_images/'.$oldImage);
 
         return redirect()->route('admin.catalog-images.index')->with('status', __('Catalog image updated.'));
     }
@@ -113,21 +115,28 @@ class CatalogImageController extends Controller
         return redirect()->route('admin.catalog-images.index')->with('status', __('Catalog image removed.'));
     }
 
-    private function validated(Request $request, bool $imageRequired): array
+    private function validated(Request $request): array
     {
         return $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:2000'],
             'category_id' => ['nullable', 'exists:categories,id'],
-            'image' => [$imageRequired ? 'required' : 'nullable', 'image', 'max:8192'],
+            'image' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:8192'],
         ]);
     }
 
-    private function storeImage(\Illuminate\Http\UploadedFile $file, TshirtImage $image): void
+    private function storeImage(UploadedFile $file, TshirtImage $image): void
+    {
+        $name = $this->storeFile($file, $image);
+        $image->update(['image_url' => $name]);
+    }
+
+    private function storeFile(UploadedFile $file, TshirtImage $image): string
     {
         $name = str_pad((string) $image->id, 5, '0', STR_PAD_LEFT).'_'.$file->hashName();
         $file->storeAs('tshirt_images', $name, 'public');
-        $image->update(['image_url' => $name]);
+
+        return $name;
     }
 
     private function authorizeAdmin(): void

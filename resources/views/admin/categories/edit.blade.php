@@ -2,6 +2,8 @@
     <form method="POST" action="{{ route('admin.categories.update', $category) }}" enctype="multipart/form-data" class="flex max-w-2xl flex-col gap-6">
         @method('PUT')
 
+        <x-admin.catalog-nav />
+
         <div>
             <flux:heading size="xl">{{ __('Edit category') }}</flux:heading>
             <flux:text>{{ __('Update category name or representative image.') }}</flux:text>

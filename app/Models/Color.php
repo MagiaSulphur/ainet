@@ -10,6 +10,8 @@ class Color extends Model
 {
     use SoftDeletes;
 
+    public $timestamps = false;
+
     protected $primaryKey = 'code';
     public $incrementing = false;
     protected $keyType = 'string';
