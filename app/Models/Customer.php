@@ -32,7 +32,7 @@ class Customer extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'id') ->withTrashed();;
     }
 
     public function orders(): HasMany

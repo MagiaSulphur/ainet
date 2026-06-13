@@ -3,7 +3,12 @@
         <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
             <div>
                 <flux:heading size="xl">{{ __('Order #:id', ['id' => $order->id]) }}</flux:heading>
-                <flux:text>{{ $order->customer->user->name }} · {{ $order->date?->format('Y-m-d') }} · {{ ucfirst($order->status) }}</flux:text>
+                <flux:text>@if ($order->customer?->trashed())
+    {{ $order->customer?->user?->name ?? 'Deleted customer' }}
+    <span class="text-red-500">(Deleted customer)</span>
+@else
+    {{ $order->customer?->user?->name }}
+@endif · {{ $order->date?->format('Y-m-d') }} · {{ ucfirst($order->status) }}</flux:text>
             </div>
 
             <div class="flex flex-wrap gap-3">
@@ -70,11 +75,17 @@
                         <tr>
                             <td class="px-4 py-3">
                                 <div class="flex items-center gap-3">
-                                    <img
-                                        src="{{ route('tshirt-images.file', $item->tshirtImage) }}"
-                                        alt="{{ $item->tshirtImage->name }}"
-                                        class="size-12 rounded bg-white object-contain p-1"
-                                    >
+                                    @if($item->tshirtImage)
+    <img
+        src="{{ route('tshirt-images.file', $item->tshirtImage) }}"
+        alt="{{ $item->tshirtImage->name }}"
+        class="size-12 rounded bg-white object-contain p-1"
+    >
+@else
+    <span class="text-red-500">
+        Deleted image
+    </span>
+@endif
                                     <span>{{ $item->tshirtImage->name }}</span>
                                 </div>
                             </td>
