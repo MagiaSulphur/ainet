@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CatalogImageController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\PriceController;
+use App\Http\Controllers\Admin\StatisticsController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\CheckoutController;
@@ -51,6 +52,7 @@ Route::middleware(['auth', 'role:A'])->prefix('admin')->group(function (): void 
         ->names('admin.colors');
     Route::get('prices', [PriceController::class, 'edit'])->name('admin.prices.edit');
     Route::put('prices', [PriceController::class, 'update'])->name('admin.prices.update');
+    Route::get('statistics', [StatisticsController::class, 'index'])->name('admin.statistics.index');
 });
 
 require __DIR__.'/settings.php';

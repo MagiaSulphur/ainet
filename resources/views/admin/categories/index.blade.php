@@ -1,5 +1,7 @@
 <x-layouts::app :title="__('Categories')">
     <div class="flex flex-col gap-6">
+        <x-admin.catalog-nav />
+
         <div class="flex items-end justify-between gap-4">
             <div>
                 <flux:heading size="xl">{{ __('Categories') }}</flux:heading>

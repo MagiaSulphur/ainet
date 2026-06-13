@@ -37,6 +37,7 @@ class ColorController extends Controller
 
         $validated = $this->validated($request);
         unset($validated['base_image']);
+        $validated['code'] = strtolower($validated['code']);
 
         Color::create($validated);
         $this->storeBaseImage($request, $validated['code']);
@@ -78,9 +79,9 @@ class ColorController extends Controller
     private function validated(Request $request): array
     {
         return $request->validate([
-            'code' => ['required', 'string', 'max:50', 'regex:/^#?[A-Za-z0-9_-]+$/', Rule::unique(Color::class, 'code')],
+            'code' => ['required', 'string', 'size:6', 'regex:/^[A-Fa-f0-9]{6}$/', Rule::unique(Color::class, 'code')],
             'name' => ['required', 'string', 'max:255'],
-            'base_image' => ['nullable', 'image', 'mimes:jpg,jpeg', 'max:8192'],
+            'base_image' => ['required', 'image', 'mimes:jpg,jpeg', 'max:8192'],
         ]);
     }
 

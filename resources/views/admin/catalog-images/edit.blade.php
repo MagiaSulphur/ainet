@@ -2,6 +2,8 @@
     <form method="POST" action="{{ route('admin.catalog-images.update', $image) }}" enctype="multipart/form-data" class="flex max-w-3xl flex-col gap-6">
         @method('PUT')
 
+        <x-admin.catalog-nav />
+
         <div>
             <flux:heading size="xl">{{ __('Edit catalog image') }}</flux:heading>
             <flux:text>{{ __('Update name, category, description or image file.') }}</flux:text>

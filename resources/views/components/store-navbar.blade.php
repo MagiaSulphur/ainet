@@ -34,7 +34,17 @@
         $links[] = [
             'label' => __('Manage catalog'),
             'href' => route('admin.catalog-images.index'),
-            'active' => request()->routeIs('admin.*'),
+            'active' => request()->routeIs(
+                'admin.catalog-images.*',
+                'admin.categories.*',
+                'admin.colors.*',
+                'admin.prices.*',
+            ),
+        ];
+        $links[] = [
+            'label' => __('Statistics'),
+            'href' => route('admin.statistics.index'),
+            'active' => request()->routeIs('admin.statistics.*'),
         ];
     }
 @endphp

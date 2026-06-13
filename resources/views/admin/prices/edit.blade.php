@@ -1,5 +1,7 @@
 <x-layouts::app :title="__('Prices')">
     <div class="mx-auto flex max-w-2xl flex-col gap-6">
+        <x-admin.catalog-nav />
+
         <div>
             <flux:heading size="xl">{{ __('Prices') }}</flux:heading>
             <flux:text>{{ __('Configure catalog and custom image prices, including quantity discounts.') }}</flux:text>

@@ -1,5 +1,7 @@
 <x-layouts::app :title="__('New catalog image')">
     <form method="POST" action="{{ route('admin.catalog-images.store') }}" enctype="multipart/form-data" class="flex max-w-3xl flex-col gap-6">
+        <x-admin.catalog-nav />
+
         <div>
             <flux:heading size="xl">{{ __('New catalog image') }}</flux:heading>
             <flux:text>{{ __('Upload a public design for the FunShirt catalog.') }}</flux:text>
