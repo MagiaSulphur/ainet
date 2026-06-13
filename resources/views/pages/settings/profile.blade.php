@@ -22,6 +22,12 @@ new #[Title('Profile settings')] class extends Component {
     public ?string $nif = null;
     public ?string $address = null;
 
+    #[Computed]
+    public function canEdit(): bool
+    {
+        return Auth::user()->user_type !== 'F';
+    }
+
     /**
      * Mount the component.
      */
@@ -44,6 +50,11 @@ public function mount(): void
      */
     public function updateProfileInformation(): void
     {
+
+    if (! $this->canEdit) {
+        abort(403);
+    }
+
         $user = Auth::user();
 
         $validated = $this->validate([
@@ -130,10 +141,10 @@ if ($this->photo) {
 
     <x-pages::settings.layout :heading="__('Profile')" :subheading="__('Update your name and email address')">
         <form wire:submit="updateProfileInformation" class="my-6 w-full space-y-6">
-            <flux:input wire:model="name" :label="__('Name')" type="text" required autofocus autocomplete="name" />
+            <flux:input wire:model="name" :label="__('Name')" type="text" required autofocus autocomplete="name" :disabled="!$this->canEdit" />
 
             <div>
-                <flux:input wire:model="email" :label="__('Email')" type="email" required autocomplete="email" />
+                <flux:input wire:model="email" :label="__('Email')" type="email" required autocomplete="email" :disabled="!$this->canEdit" />
 
                 @if ($this->hasUnverifiedEmail)
                     <div>
@@ -163,11 +174,12 @@ if ($this->photo) {
     wire:model="photo"
     type="file"
     label="Photo"
+    :disabled="!$this->canEdit"
 />
 
 <div>
     <label>Gender</label>
-    <select wire:model="gender">
+    <select wire:model="gender" :disabled="!$this->canEdit">
         <option value="M">Male</option>
         <option value="F">Female</option>
     </select>
@@ -177,22 +189,30 @@ if ($this->photo) {
     wire:model="nif"
     label="NIF"
     type="text"
+    :disabled="!$this->canEdit"
 />
 
 <flux:input
     wire:model="address"
     :label="__('Address')"
     type="text"
+    :disabled="!$this->canEdit"
 />
 
-            <div class="flex items-center gap-4">
-                <flux:button variant="primary" type="submit" data-test="update-profile-button">
-                    {{ __('Save') }}
-                </flux:button>
-            </div>
+            @if($this->canEdit)
+<div class="flex items-center gap-4">
+    <flux:button
+        variant="primary"
+        type="submit"
+        data-test="update-profile-button"
+    >
+        {{ __('Save') }}
+    </flux:button>
+</div>
+@endif
         </form>
 
-        @if ($this->showDeleteUser)
+        @if ($this->showDeleteUser && $this->canEdit)
             <livewire:pages::settings.delete-user-form />
         @endif
     </x-pages::settings.layout>

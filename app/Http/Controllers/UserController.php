@@ -12,6 +12,10 @@ class UserController extends Controller
 {
     public function index(Request $request): View
     {
+        if (auth()->user()->user_type !== 'A') {
+    abort(403);
+}
+
 $users = User::query()
 
     ->when($request->filled('search'), function ($query) use ($request) {
@@ -40,6 +44,9 @@ $users = User::query()
 
     public function toggleBlocked(User $user): RedirectResponse
 {
+    if (auth()->user()->user_type !== 'A') {
+        abort(403);
+    }
     // Evitar bloquearse a sí mismo
     if ($user->id === auth()->id()) {
         return back()->with('status', 'You cannot block yourself.');
@@ -52,11 +59,17 @@ $users = User::query()
 
 public function create()
 {
+    if (auth()->user()->user_type !== 'A') {
+        abort(403);
+    }
     return view('users.create');
 }
 
 public function store(Request $request): RedirectResponse
 {
+    if (auth()->user()->user_type !== 'A') {
+        abort(403);
+    }
     $validated = $request->validate([
         'name' => ['required', 'string', 'max:255'],
         'email' => ['required', 'email', 'unique:users,email'],
@@ -82,6 +95,9 @@ public function store(Request $request): RedirectResponse
 
 public function destroy(User $user)
 {
+    if (auth()->user()->user_type !== 'A') {
+        abort(403);
+    }
     if ($user->id === auth()->id()) {
         return back()->with(
             'status',
@@ -123,15 +139,20 @@ public function destroy(User $user)
 
 public function edit(User $user)
 {
-    return view('users.edit', [
-        'user' => $user,
-    ]);
+    if (auth()->user()->user_type !== 'A') {
+        abort(403);
+    }
+
+    return view('users.edit', compact('user'));
 }
 
 public function update(
     Request $request,
     User $user
 ): RedirectResponse {
+    if (auth()->user()->user_type !== 'A') {
+        abort(403);
+    }
 
     $validated = $request->validate([
         'name' => ['required', 'string', 'max:255'],
