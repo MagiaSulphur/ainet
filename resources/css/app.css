@@ -643,6 +643,185 @@ select:focus[data-flux-control] {
             #ffffff;
     }
 
+    .shop-tshirt-preview {
+        position: relative;
+        aspect-ratio: 1;
+        overflow: hidden;
+        background: #ffffff;
+    }
+
+    .shop-tshirt-base {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: opacity 140ms ease;
+    }
+
+    .shop-tshirt-design {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        width: 34%;
+        height: 42%;
+        object-fit: contain;
+        transform: translateX(-50%);
+        pointer-events: none;
+    }
+
+    .shop-tshirt-caption {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        border-top: 2px solid #1f1f24;
+        background: #fdffb8;
+        padding: 0.75rem 1rem;
+    }
+
+    .shop-tshirt-caption span {
+        color: #5f5f68;
+        font-size: 0.78rem;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    .shop-color-option {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border: 2px solid #1f1f24;
+        border-radius: 999px;
+        background: #ffffff;
+        color: #1f1f24;
+        cursor: pointer;
+        font: inherit;
+        font-size: 0.875rem;
+        font-weight: 800;
+        padding: 0.5rem 0.75rem;
+        transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease;
+    }
+
+    .shop-color-option:hover {
+        transform: translateY(-1px);
+        box-shadow: 3px 3px 0 #63c8ff;
+    }
+
+    .shop-color-option[aria-pressed='true'] {
+        background: #fdffb8;
+        box-shadow: 3px 3px 0 #4dffbe;
+    }
+
+    .shop-color-option:focus-visible {
+        outline: 3px solid #ff2dd1;
+        outline-offset: 2px;
+    }
+
+    .shop-size-option {
+        display: inline-flex;
+        min-width: 3rem;
+        min-height: 2.75rem;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #1f1f24;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #1f1f24;
+        cursor: pointer;
+        font: inherit;
+        font-size: 0.875rem;
+        font-weight: 900;
+        padding: 0.5rem 0.75rem;
+        transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease;
+    }
+
+    .shop-size-option:hover {
+        transform: translateY(-1px);
+        box-shadow: 3px 3px 0 #ff2dd1;
+    }
+
+    .shop-size-option[aria-pressed='true'] {
+        background: #63c8ff;
+        box-shadow: 3px 3px 0 #4dffbe;
+    }
+
+    .shop-size-option:focus-visible,
+    .shop-add-to-cart:focus-visible,
+    .shop-quantity-field input:focus-visible {
+        outline: 3px solid #ff2dd1;
+        outline-offset: 2px;
+    }
+
+    .shop-purchase-row {
+        display: flex;
+        align-items: end;
+        gap: 1rem;
+        border-top: 2px solid #1f1f24;
+        padding-top: 1.25rem;
+    }
+
+    .shop-quantity-field {
+        display: grid;
+        gap: 0.4rem;
+        color: #1f1f24;
+        font-size: 0.78rem;
+        font-weight: 900;
+        text-transform: uppercase;
+    }
+
+    .shop-quantity-field input {
+        width: 5rem;
+        min-height: 2.75rem;
+        border: 2px solid #1f1f24;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #1f1f24;
+        font: inherit;
+        font-size: 1rem;
+        font-weight: 800;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .shop-add-to-cart {
+        min-height: 2.75rem;
+        flex: 1;
+        border: 2px solid #1f1f24;
+        border-radius: 8px;
+        background: #ff2dd1;
+        color: #ffffff;
+        cursor: pointer;
+        font: inherit;
+        font-weight: 900;
+        padding: 0.6rem 1rem;
+        box-shadow: 4px 4px 0 #1f1f24;
+        transition: transform 140ms ease, box-shadow 140ms ease;
+    }
+
+    .shop-add-to-cart:hover {
+        transform: translateY(-1px);
+        box-shadow: 6px 6px 0 #1f1f24;
+    }
+
+    .shop-form-error {
+        border: 2px solid #1f1f24;
+        border-radius: 8px;
+        background: #fdffb8;
+        color: #991b1b;
+        font-size: 0.875rem;
+        font-weight: 800;
+        padding: 0.75rem 1rem;
+    }
+
+    @media (max-width: 480px) {
+        .shop-purchase-row {
+            align-items: stretch;
+            flex-direction: column;
+        }
+
+        .shop-quantity-field input {
+            width: 100%;
+        }
+    }
+
     .shop-chip {
         border: 1px solid #1f1f24;
         border-radius: 999px;
