@@ -30,7 +30,7 @@
                 </div>
                 <div class="shop-tshirt-caption">
                     <span>{{ __('Selected color') }}</span>
-                    <strong data-selected-color-name>{{ $selectedColor?->name ?? __('Unavailable') }}</strong>
+                    <strong data-selected-color-name class="dark:text-black">{{ $selectedColor?->name ?? __('Unavailable') }}</strong>
                 </div>
             </div>
 
